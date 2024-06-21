@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import userModel from '../models/user.model.js';
+import User from '../models/user.model.js';
 import generateToken from '../utils/generateToken.js';
 import logError from '../utils/logError.js';
 
@@ -32,7 +32,7 @@ const signup = async (req, res) => {
       });
     }
 
-    const user = await userModel.findOne({ username });
+    const user = await User.findOne({ username });
 
     if (user) {
       return res.status(400).json({
@@ -49,7 +49,7 @@ const signup = async (req, res) => {
     const boyPic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
     const girlPic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
 
-    const newUser = new userModel({
+    const newUser = new User({
       fullname,
       username,
       password: hashedPassword,
@@ -85,7 +85,7 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await userModel.findOne({ username });
+    const user = await User.findOne({ username });
     
     if(!user) {
         return res.status(404).json({
