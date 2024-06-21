@@ -5,8 +5,6 @@ import logger from 'morgan';
 import authRoutes from './routes/auth.routes.js';
 import connectDB from './configs/dbConnection.js';
 
-
-
 const app = express();
 const port = process.env.PORT || 5000;
 const apiVersion = process.env.API_VERSION || 'v1';
