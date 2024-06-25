@@ -9,24 +9,18 @@ const signup = async (req, res) => {
       fullname,
       username,
       password,
-      confirmationPassword,
+      confirmPassword,
       gender,
       // profilePicture, // TODO: Develop a feature allow users to upload their profile picture
     } = req.body;
 
-    if (
-      !fullname ||
-      !username ||
-      !password ||
-      !gender ||
-      !confirmationPassword
-    ) {
+    if (!fullname || !username || !password || !confirmPassword || !gender) {
       return res.status(400).json({
         message: 'Please fill the required fields',
       });
     }
 
-    if (password !== confirmationPassword) {
+    if (password !== confirmPassword) {
       return res.status(400).json({
         message: 'Password and confirmation password do not match',
       });
@@ -86,7 +80,7 @@ const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
-    
+
     if(!user) {
         return res.status(404).json({
             message: 'User not found',
@@ -104,13 +98,14 @@ const login = async (req, res) => {
     generateToken(user._id, res);
 
     res.status(200).json({
-        data: {
-            _id: user._id,
-            fullname: user.fullname,
-            username: user.username,
-        },
-        message: 'Logged in successfully',
-    })
+      data: {
+        _id: user._id,
+        fullname: user.fullname,
+        username: user.username,
+        profilePicture: user.profilePicture,
+      },
+      message: 'Logged in successfully',
+    });
   } catch (error) {
     res.status(500).json({
         error: 'Internal server error',
