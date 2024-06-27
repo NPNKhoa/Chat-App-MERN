@@ -1,6 +1,7 @@
 import logError from "../utils/logError.js"
 import Conversation from '../models/conversation.model.js';
 import Message from '../models/message.model.js';
+import User from '../models/user.model.js';
 
 const sendMessage = async (req, res) => {
     try {
@@ -24,8 +25,8 @@ const sendMessage = async (req, res) => {
 
         if(!conversation) {
             conversation = await Conversation.create({
-                participants: ['6674daeee349b7a5f85ebec3', receiverId],
-                messages: [],
+              participants: [senderId, receiverId],
+              messages: [],
             });
         }
 
@@ -57,7 +58,8 @@ const getMessages = async (req, res) => {
     try {
         const { id: receiverId } = req.params;
         const senderId = req.user._id;
-
+        const { fullname } = req.query;
+        
         const conversation = await Conversation.findOne({
             participants: {
                 $all: [senderId, receiverId],

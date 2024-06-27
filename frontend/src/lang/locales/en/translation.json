@@ -21,5 +21,8 @@
   "input-message-here-label": "Input message here...",
   "password-length-error-label": "Password must be as least 6 charecters long",
   "difference-pass-label": "Passwords do not match",
-  "missing-field-error-label": "Please fill in all fields"
+  "missing-field-error-label": "Please fill in all fields",
+  "welcome-label": "Welcome",
+  "no-conversation-message": "Select a contact to start messaging...",
+  "not-found-user-label": "User not found"
 }

@@ -4,7 +4,7 @@ import logger from 'morgan';
 import cors from 'cors';
 
 import authRoutes from './routes/auth.routes.js';
-import messageRotues from './routes/message.routes.js';
+import messageRoutes from './routes/message.routes.js';
 import userRoutes from './routes/user.routes.js';
 import connectDB from './configs/dbConnection.js';
 import cookieParser from 'cookie-parser';
@@ -14,16 +14,18 @@ const port = process.env.PORT || 5000;
 const apiVersion = process.env.API_VERSION || 'v1';
 const allowOrigin = ['http://localhost:3000'];
 const corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (allowOrigin.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
-    }
-    else {
+    } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  optionsSuccesStatus: 200
-}
+  credentials: true,
+  optionsSuccessStatus: 200,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
 
 dotenv.config();
 
@@ -37,7 +39,7 @@ app.use(cookieParser());
 app.use(logger('dev'));
 
 app.use(`/${apiVersion}/auth`, authRoutes);
-app.use(`/${apiVersion}/messages`, messageRotues);
+app.use(`/${apiVersion}/messages`, messageRoutes);
 app.use(`/${apiVersion}/users`, userRoutes);
 
 server.listen(port, () => {

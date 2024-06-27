@@ -14,6 +14,7 @@ const useLogin = () => {
         try {
             const res = await fetch('http://localhost:5000/v1/auth/login', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                 },

@@ -20,5 +20,8 @@
   "input-message-here-label": "Tin nhắn...",
   "password-length-error-label": "Mật khẩu phải có ít nhất 6 kí tự",
   "difference-pass-label": "Mật khẩu không khớp",
-  "missing-field-error-label": "Vui lòng điền đầy đủ các trường"
+  "missing-field-error-label": "Vui lòng điền đầy đủ các trường",
+  "welcome-label": "Xin chào",
+  "no-conversation-message": "Chọn một liên hệ để bắt đầu trò chuyện...",
+  "not-found-user-label": "Không tìm thấy"
 }

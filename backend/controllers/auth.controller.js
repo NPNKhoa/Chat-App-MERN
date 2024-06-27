@@ -62,6 +62,7 @@ const signup = async (req, res) => {
             fullname: newUser.fullname,
             username: newUser.username,
             gender: newUser.gender,
+            profilePicture: newUser.profilePicture,
           },
           message: 'User created successfully',
         });

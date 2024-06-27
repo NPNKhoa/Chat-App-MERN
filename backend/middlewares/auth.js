@@ -5,7 +5,6 @@ import User from '../models/user.model.js';
 export default async function auth(req, res, next) {
     try {
         const token = req.cookies.token;
-
         if(!token) {
             return res.status(401).json({
                 message: 'Unathorized - No token provided'

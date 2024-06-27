@@ -37,8 +37,9 @@ const useSignUp = () => {
                 throw new Error(data.message);
             }
 
-            localStorage.setItem('chat-user', JSON.stringify(data));
-            setAuthUser(data);
+            console.log(data.data);
+            localStorage.setItem('chat-user', JSON.stringify(data.data));
+            setAuthUser(data.data);
         } catch (error) {
             console.log(error.message);
             toast.error(error.message);

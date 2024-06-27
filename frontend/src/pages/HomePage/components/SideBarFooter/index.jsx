@@ -7,8 +7,6 @@ const SideBarFooter = () => {
   const { logout, } = useLogout();
   const { authUser, } = useAuthContext();
 
-  console.log(authUser);
-
   return (
     <div className='border-t border-slate-300 pt-2 flex items-center gap-2'>
       <div className='avatar online'>
