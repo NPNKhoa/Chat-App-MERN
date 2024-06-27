@@ -18,6 +18,7 @@ const allowOrigin = [
   'http://localhost:3000',
   'http://localhost:5000',
   'https://chat-app-mern-wnvj.onrender.com',
+  '*',
 ];
 const corsOptions = {
   origin: function (origin, callback) {
