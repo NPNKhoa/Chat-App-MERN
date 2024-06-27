@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import useConversation from '../../../../zustand/useConversation';
+import { useSocketContext } from '../../../../context/useSocketContext';
 
 const Conversation = ({ conversation, }) => {
   const { selectedConversation, setSelectedConversation, } = useConversation();
 
   const isSelected = selectedConversation?._id === conversation?._id;
+  const { onlineUsers } = useSocketContext();
+  const isOnline = onlineUsers.includes(conversation._id);
 
   return (
     <div
@@ -14,7 +17,7 @@ const Conversation = ({ conversation, }) => {
       }
       onClick={() => setSelectedConversation(conversation)}
     >
-      <div className='avatar online'>
+      <div className={`avatar ${isOnline ? 'online' : ''}`}>
         <div className='w-12 rounded-full'>
           <img src={conversation?.profilePicture} />
         </div>
@@ -22,8 +25,8 @@ const Conversation = ({ conversation, }) => {
       <div className='w-2/3'>
         {/* call api and put data here */}
         <h3 className='font-medium text-lg'>{conversation?.fullname}</h3>
-        <span className='w-3/4 text-slate-600'>Sender: </span>
-        <p className='inline-block text-slate-600'>Hello</p>
+        {/* <span className='w-3/4 text-slate-600'>Sender: </span>
+        <p className='inline-block text-slate-600'>Hello</p> */}
       </div>
     </div>
   );

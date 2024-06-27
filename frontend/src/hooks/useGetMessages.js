@@ -20,7 +20,6 @@ const useGetMessages = () => {
                 if(!data?.data) {
                     throw new Error(data?.message);
                 }
-
                 setMessages(data?.data);
             } catch (error) {
                 toast(error.message);

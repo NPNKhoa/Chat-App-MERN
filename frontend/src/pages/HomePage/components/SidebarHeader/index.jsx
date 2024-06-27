@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 const SidebarHeader = () => {
   const { t } = useTranslation();
+  
   return (
     <div className='mb-4'>
       <div className='flex justify-between items-center p-1 mb-4 mt-1'>

@@ -1,10 +1,13 @@
 import { useEffect, useRef } from "react";
 import useGetMessages from "../../../../hooks/useGetMessages";
 import Message from "../Message";
+import useListenMessage from "../../../../hooks/useListenMessages";
 
 const ChatArea = () => {
   const { messages, } = useGetMessages();
   const containerRef = useRef(null);
+
+  useListenMessage();
 
   useEffect(() => {
     if(containerRef.current) {

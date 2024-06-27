@@ -18,8 +18,16 @@ const ChatInput = () => {
       setMessage('');
     }
 
+    const handleEnterPress = (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        handleSendMessage(e);
+      }
+    };
+
     return (
-      <div className='w-full flex items-center justify-between p-4'>
+      <form
+        className='w-full flex items-center justify-between p-4'
+        onSubmit={handleSendMessage}>
         <TextField
           id='input-message'
           className='w-full'
@@ -29,11 +37,12 @@ const ChatInput = () => {
           size='small'
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          onKeyPress={handleEnterPress}
         />
         <IconButton aria-label='send-message' onClick={handleSendMessage}>
           <SendIcon />
         </IconButton>
-      </div>
+      </form>
     );
 };
 

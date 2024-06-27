@@ -1,54 +1,63 @@
 import logError from "../utils/logError.js"
 import Conversation from '../models/conversation.model.js';
 import Message from '../models/message.model.js';
-import User from '../models/user.model.js';
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 const sendMessage = async (req, res) => {
     try {
-        const { message } = req.body;
-        const { id: receiverId } = req.params;
-        const senderId = req.user._id;
+      const { message } = req.body;
+      const { id: receiverId } = req.params;
+      const senderId = req.user._id;
 
-        if (!receiverId) {
-          return res.status(400);
-        }
+      if (!receiverId) {
+        return res.status(400);
+      }
 
-        if (!message) {
-          return res.status(400);
-        }
+      if (!message) {
+        return res.status(400);
+      }
 
-        let conversation = await Conversation.findOne({
-            participants: { 
-                $all: [senderId, receiverId],
-            },
+      let conversation = await Conversation.findOne({
+        participants: {
+          $all: [senderId, receiverId],
+        },
+      });
+
+      if (!conversation) {
+        conversation = await Conversation.create({
+          participants: [senderId, receiverId],
+          messages: [],
         });
+      }
 
-        if(!conversation) {
-            conversation = await Conversation.create({
-              participants: [senderId, receiverId],
-              messages: [],
-            });
-        }
+      const newMessage = new Message({
+        senderId,
+        receiverId,
+        message,
+      });
 
-        const newMessage = new Message({
-            senderId,
-            receiverId,
-            message,
-        });
+      if (newMessage) {
+        conversation.messages.push(newMessage._id);
+      }
 
-        if(newMessage) {
-            conversation.messages.push(newMessage._id);
-        }
+      // Promise.all([
+      //     newMessage.save(),
+      //     conversation.save(),
+      // ]); // This will run in parallel
 
-        Promise.all([
-            newMessage.save(),
-            conversation.save(),
-        ]); // This will run in parallel
+      // Save the new message and update the conversation sequentially instead of parallely
+      await newMessage.save();
+      await conversation.save();
 
-        res.status(201).json({
-            data: newMessage,
-            message: 'Message sent',
-        })
+      const receiverSocketId = getReceiverSocketId(receiverId);
+      if (receiverSocketId) {
+        io.to(receiverSocketId).emit('newMessage', newMessage);
+      }
+
+      res.status(201).json({
+        data: newMessage,
+        message: 'Message sent',
+      });
     } catch (error) {
         logError(error, res);
     }

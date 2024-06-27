@@ -19,7 +19,7 @@ const Message = ({ message, }) => {
           <img alt='Tailwind CSS chat bubble component' src={profilePic} />
         </div>
       </div>
-      <div className={`chat-bubble ${messageBgColor} text-black font-medium`}>{message?.message}</div>
+      <div className={`chat-bubble ${messageBgColor} text-black font-medium break-words`}>{message?.message}</div>
       <div className='chat-footer opacity-50'>
         {message?.createdAt ? (
           <TimeChanger isoString={message?.createdAt} />
