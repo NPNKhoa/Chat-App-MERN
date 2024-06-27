@@ -12,17 +12,20 @@ const useLogin = () => {
             return;
         }
         try {
-            const res = await fetch('http://localhost:5000/v1/auth/login', {
+            const res = await fetch(
+              'http://https://chat-app-mern-wnvj.onrender.com/v1/auth/login',
+              {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
-                    'Content-Type': 'application/json',
+                  'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username,
-                    password,
-                })
-            });
+                  username,
+                  password,
+                }),
+              }
+            );
 
             const data = await res.json();
 
