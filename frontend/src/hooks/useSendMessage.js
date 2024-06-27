@@ -7,7 +7,7 @@ const useSendMessage = () => {
     const sendMessage = async (message) => {
         try {
             const res = await fetch(
-              `http://localhost:5000/v1/messages/send/${selectedConversation?._id}`,
+              `https://chat-app-mern-wnvj.onrender.com/v1/messages/send/${selectedConversation?._id}`,
               {
                 method: 'POST',
                 credentials: 'include',

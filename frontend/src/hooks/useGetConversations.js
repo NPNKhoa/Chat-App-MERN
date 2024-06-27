@@ -8,13 +8,16 @@ const useGetConversations = () => {
   const getConversation = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/v1/users', {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const res = await fetch(
+        'https://chat-app-mern-wnvj.onrender.com/v1/users',
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       const data = await res.json();
 
       if (data.error) {

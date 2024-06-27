@@ -8,7 +8,7 @@ const useSearchUsers = (searchQuery) => {
     const searchUsers = useCallback(async () => {
         setLoading(true);
         try {
-            let url = 'http://localhost:5000/v1/users';
+            let url = 'https://chat-app-mern-wnvj.onrender.com/v1/users';
 
             if(searchQuery) {
                 url += `?fullname=${encodeURIComponent(searchQuery)}`;

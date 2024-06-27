@@ -6,12 +6,15 @@ const useLogout = () => {
 
     const logout = async () => {
         try {
-            const res = await fetch('http://localhost:5000/v1/auth/logout', {
+            const res = await fetch(
+              'https://chat-app-mern-wnvj.onrender.com/v1/auth/logout',
+              {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                  'Content-Type': 'application/json',
                 },
-            });
+              }
+            );
 
             const data = await res.json();
 

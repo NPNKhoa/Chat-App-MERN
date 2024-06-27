@@ -8,13 +8,16 @@ const useGetMessages = () => {
     useEffect(() => {
         const getMessages = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/v1/messages/${selectedConversation?._id}`, {
+                const res = await fetch(
+                  `https://chat-app-mern-wnvj.onrender.com/v1/messages/${selectedConversation?._id}`,
+                  {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
+                      'Content-Type': 'application/json',
+                    },
+                  }
+                );
 
                 const data = await res.json();
                 if(!data?.data) {

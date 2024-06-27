@@ -13,20 +13,23 @@ const useSignUp = () => {
             return;
         }
         try {
-            const res = await fetch(`http://localhost:5000/v1/auth/signup`, {
-              method: 'POST',
-              credentials: 'include',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                fullname,
-                username,
-                password,
-                confirmPassword,
-                gender,
-              }),
-            });
+            const res = await fetch(
+              `https://chat-app-mern-wnvj.onrender.com/v1/auth/signup`,
+              {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  fullname,
+                  username,
+                  password,
+                  confirmPassword,
+                  gender,
+                }),
+              }
+            );
 
             const data = await res.json();
 
