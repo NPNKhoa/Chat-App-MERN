@@ -14,7 +14,11 @@ import { app, server, } from './socket/socket.js';
 const port = process.env.PORT || 5000;
 const __dirname = path.resolve();
 const apiVersion = process.env.API_VERSION || 'v1';
-const allowOrigin = ['http://localhost:3000', 'http://localhost:5000'];
+const allowOrigin = [
+  'http://localhost:3000',
+  'http://localhost:5000',
+  'https://chat-app-mern-wnvj.onrender.com',
+];
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowOrigin.indexOf(origin) !== -1 || !origin) {
