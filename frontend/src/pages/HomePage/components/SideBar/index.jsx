@@ -11,7 +11,7 @@ import useDebounce from "../../../../hooks/useDebounce";
 const SideBar = () => {
   const { t, } = useTranslation();
   const [search, setSearch] = useState('');
-  const debouncedValue = useDebounce(search, 500); // delay 5ms
+  const debouncedValue = useDebounce(search, 300); // delay 3ms
   const { loading, users } = useSearchUsers(debouncedValue);
 
   return (
