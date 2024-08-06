@@ -9,7 +9,7 @@ const useGetMessages = () => {
         const getMessages = async () => {
             try {
                 const res = await fetch(
-                  `https://chat-app-mern-wnvj.onrender.com/v1/messages/${selectedConversation?._id}`,
+                  `${process.env.REACT_APP_API_URL}/v1/messages/${selectedConversation?._id}`,
                   {
                     method: 'GET',
                     credentials: 'include',

@@ -17,7 +17,7 @@ const apiVersion = process.env.API_VERSION || 'v1';
 const allowOrigin = [
   'http://localhost:3000',
   'http://localhost:5000',
-  'https://chat-app-mern-wnvj.onrender.com',
+  '${process.env.REACT_APP_API_URL}',
   '*',
 ];
 const corsOptions = {

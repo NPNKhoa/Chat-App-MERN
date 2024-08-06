@@ -13,7 +13,7 @@ const useLogin = () => {
         }
         try {
             const res = await fetch(
-              'https://chat-app-mern-wnvj.onrender.com/v1/auth/login',
+              `${process.env.REACT_APP_API_URL}/v1/auth/login`,
               {
                 method: 'POST',
                 credentials: 'include',

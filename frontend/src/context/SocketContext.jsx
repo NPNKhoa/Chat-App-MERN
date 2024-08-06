@@ -12,7 +12,7 @@ const SocketContextProvider = ({ children, }) => {
 
     useEffect(() => {
         if(authUser) {
-            const socket = io('https://chat-app-mern-wnvj.onrender.com', {
+            const socket = io('${process.env.REACT_APP_API_URL}', {
               query: {
                 userId: authUser._id,
               },

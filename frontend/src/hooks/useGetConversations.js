@@ -9,7 +9,7 @@ const useGetConversations = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        'https://chat-app-mern-wnvj.onrender.com/v1/users',
+        `${process.env.REACT_APP_API_URL}/v1/users`,
         {
           method: 'GET',
           credentials: 'include',

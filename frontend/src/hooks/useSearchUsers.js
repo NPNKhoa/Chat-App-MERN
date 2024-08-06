@@ -8,7 +8,7 @@ const useSearchUsers = (searchQuery) => {
     const searchUsers = useCallback(async () => {
         setLoading(true);
         try {
-            let url = 'https://chat-app-mern-wnvj.onrender.com/v1/users';
+            let url = `${process.env.REACT_APP_API_URL}/v1/users`;
 
             if(searchQuery) {
                 url += `?fullname=${encodeURIComponent(searchQuery)}`;

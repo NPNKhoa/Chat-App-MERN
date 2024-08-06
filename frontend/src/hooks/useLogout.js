@@ -7,7 +7,7 @@ const useLogout = () => {
     const logout = async () => {
         try {
             const res = await fetch(
-              'https://chat-app-mern-wnvj.onrender.com/v1/auth/logout',
+              `${process.env.REACT_APP_API_URL}/v1/auth/logout`,
               {
                 method: 'POST',
                 headers: {
